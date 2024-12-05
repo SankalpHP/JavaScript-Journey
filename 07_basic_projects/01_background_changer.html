@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BackGround Changer</title>
+    <style>
+        span{
+            display:inline-block;
+            height: 100px;
+            width: 100px;
+            border-style: solid;
+            border-color: black;
+            border-width: 2px;
+            margin: 25px 50px 75px; 
+        }
+
+        #yellow{
+            background-color:yellow;    
+        }
+
+        #greenyellow{
+            background-color:greenyellow;    
+        }
+
+        #grey{
+            background-color:grey;    
+        }
+
+        #white{
+            background-color:white;    
+        }
+    </style>
+</head>
+<body>
+    <div>Click The Boxes To Change The Background Color</div>
+    <div class="bg-buttons">
+        <span class="button" id="yellow"></span>
+        <span class="button" id="greenyellow"></span>
+        <span class="button" id="grey"></span>
+        <span class="button" id="white"></span>
+    </div>
+
+    <script>
+        let buttons = document.querySelectorAll('.button');
+        console.log(buttons);
+       
+        buttons.forEach((item)=>{
+             item.addEventListener("click",(e)=>{
+               console.log(e.target.id);
+               if(e.target.id === "yellow"){
+                  document.body.style.backgroundColor = e.target.id;
+               }else if(e.target.id === "greenyellow"){
+                 document.body.style.backgroundColor = e.target.id;
+               }else if(e.target.id === "grey"){
+                 document.body.style.backgroundColor = e.target.id;
+               }else{
+                document.body.style.backgroundColor = e.target.id;
+               }
+           });
+        });
+    </script>
+</body>
+</html>

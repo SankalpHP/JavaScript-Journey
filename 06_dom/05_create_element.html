@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create a Element</title>
+</head>
+<body>
+    
+    <ul id="app">
+    </ul>
+    <script>
+        /*
+           #Here we will learn how to create the html element programatically
+
+           # we will learn in step's
+             
+             1) step
+                createElement() – create a new element.
+                appendChild()  – append a node to a list of child nodes of a specified parent node.
+                textContent – get and set the text content of a node.
+                innerHTML – get and set the HTML content of an element.
+
+        */
+
+        // create the element div
+        let div = document.createElement('div');
+        // set the properties of the created element div
+        div.id="firstDiv";
+        div.classList = "div1";
+        div.style.color = "yellow";
+        div.style.background = "brown";
+        div.innerText = "Here we will learn how to create the html element programatically";
+        
+        // append the chidNode div to parentNode body
+        document.body.appendChild(div);
+
+        // difference between appendChild and append
+        /*
+            append vs. appendChild()
+            The following table shows the differences between append() and appendChild() methods:
+
+            Differences	        append()	                appendChild()
+            Return value	   undefined	                The appended Node object
+            Input	            Multiple Node Objects	    A single Node object
+            Parameter Types	    Accept Node and DOMString	Only Node
+        */
+
+        // append example
+        let list = document.querySelector("#app");
+            
+        let languages = ["JavaScript","JAVA","PYTHON","C++","C"];
+        
+        let li;
+        languages.forEach((item)=>{
+          li = document.createElement("li");
+          li.innerHTML = item;
+          li.style.backgroundColor = "yellow";
+          list.append(li);
+        });
+        
+    </script>
+</body>
+</html>

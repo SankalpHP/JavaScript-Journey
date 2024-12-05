@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event's</title>
+</head>
+<body>
+    <ul id="language_list">
+        <li><h3 id="java">Java</h3></li>
+        <li><h3 id="python">Python</h3></li>
+        <li><h3 id="c">C</h3></li>
+        <li><h3 id="c++">C++</h3></li>
+    </ul>
+
+    <a id="js" href="https://en.wikipedia.org/wiki/JavaScript">JS</a>
+
+    <script>
+         /*
+            In this Tutorial we will learn about event's in JS
+
+            There are basically three ways to handle the event's
+
+                1) add event as a attribute on a html 
+
+                    example:- <li><h3 onclick="language()">Java</h3></li>
+
+                    But this is bad approachit create's a problem and unwanted result's
+
+                2) catch element and apply the event on it 
+
+                    example:- document.getElementById('python').onclick = language; 
+
+                    But in this approach the problem is that it does not
+                    gives that much information about occuring event so
+                    some times its quit diffculty to debug the code
+                    
+                3) use addeventlistener(); method it is best approach in 
+                    modern times    
+
+                    Now Just look about the addeventlistener(); method in this 
+                    tutorial's
+         */
+
+    // function language(){
+    //          console.log("clicked on languaged");
+    //      }
+
+    let ul = document.querySelector('#language_list');
+    
+    /*
+        false is thrid parameter which is event propagation parameter 
+        if event propagation parameter is false it is called as event bubbling
+        by default it is false
+        In event bubbling the event propagation is start's from child to parent or you can say bottom to top
+
+        if event propagation parameter is true it is called as event capturing
+        In event capturing the event propagation is start's from parent to child or you can say top to bottom
+
+    */
+    //     ul.addEventListener("click",(event)=>{
+    //        //console.log(event);
+    //        console.log("ul is clicked");
+    //     },false);
+              
+        // let python = document.getElementById("python");  
+        //     python.addEventListener("click",(event)=>{
+        //       console.log("li is clicked");
+        //     },false); 
+        
+        
+        // when event propagation is true
+
+        // ul.addEventListener("click",(event)=>{
+        //    //console.log(event);
+        //    console.log("ul is clicked");
+        // },true);
+              
+        // let python = document.getElementById("python");  
+        //     python.addEventListener("click",(event)=>{
+        //     console.log("li is clicked");
+        //     },true);
+
+        // how to prevent event propagation
+        // ul.addEventListener("click",(event)=>{
+        //    //console.log(event);
+        //    console.log("ul is clicked");
+        //    event.stopPropagation();// stopPropagation() stop event propagation 
+        // },true);
+              
+        // let python = document.getElementById("python");  
+        //     python.addEventListener("click",(event)=>{
+        //     console.log("li is clicked");
+        //     },true);
+      
+      // preventdefault() => prevent the default behaviour 
+      let JS = document.getElementById('js');
+          JS.addEventListener("click",(event)=>{
+            event.preventDefault();
+          },false); 
+          
+     // Event real time use case by small project 
+     // when we click on any language it must be remove
+     ul.addEventListener("click",(event)=>{
+          console.log(event.target.parentNode); 
+          console.log(event.target.tagName);
+
+          if(event.target.tagName == "H3"){
+            event.target.parentNode.remove();
+          }
+         
+        },true);
+
+    </script>
+</body>
+</html>

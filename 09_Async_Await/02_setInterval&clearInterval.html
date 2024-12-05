@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>setInterval and clearInterval</title>
+</head>
+<body>
+     <h1>HELLO JAVASCRIPT</h1>
+     <button type="button" id="btn_start">start</button>
+     <button type="button" id="btn_stop">stop</button>
+
+    <script>
+             
+        /*
+            # setInterval() => setInterval() method actually perform's any action or operation repeatively 
+                               after some interval of time
+
+            # setInterval(handler,time) => method takes two parameter one is handler means callback function and 
+                                           second is time 
+        */  
+       
+        // onclick of btn start we are starting the setInterval() operation
+        const start_btn = document.querySelector("#btn_start");
+        let start;       
+              start_btn.addEventListener("click",($event)=>{
+                start = setInterval(()=>{
+                            console.log("hi Sankalp");
+                        },2000);// after every 2000 means 2sec the "hi Sankalp" is print on console
+              });
+        
+         /*
+            # clearInterval() =>  clearInterval() is the method that clear the setInterval() method 
+                                  and stop the operation of setInterval()  method.
+
+            # clearInterval(reference) => It takes the reference of the setInterval() method and stop's
+                                          the operation of setInterval() method.
+        */
+        const stop_btn = document.querySelector("#btn_stop");
+            // onclick of btn we are clearing the Interval 
+              stop_btn.addEventListener("click",($event)=>{  
+                   clearInterval(start);
+              });
+    </script>
+</body>
+</html>

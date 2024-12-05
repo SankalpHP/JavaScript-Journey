@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Object Modal Selector</title>
+</head>
+<body>
+    <div class="DOM">
+        <h1 id="dom_head" name="h1" class="heading">Document Object Modal Selector <span style="display:none">yes okay</span></h1>
+        <h1 id="dom_head" name="h1" class="heading">Document Object Modal Selector <span style="display:none">yes okay</span></h1>
+        <h1 id="dom_head" name="h1" class="heading">Document Object Modal Selector <span style="display:none">yes okay</span></h1>
+        <h2>one</h2>
+        <h2>two</h2>
+        <h2>three</h2>
+    </div>
+
+    <ul id = "list" class="rank_list">
+      <li class="list-item">first</li>
+      <li class="list-item">second</li>
+      <li class="list-item">third</li>
+      <li class="list-item">fourth</li>
+    </ul>
+
+    <script>
+        /*
+            # remaining two selector methods
+
+                querySelector()  – select elements by CSS selectors.
+                querySelectorAll()  – select all elements by CSS selectors.
+        */
+
+        /*
+          # querySelector() 
+
+             The querySelector() is a method of the Element interface. 
+             The querySelector() method allows you to select the first element that matches one or more CSS selectors.
+             If the selector is not valid CSS syntax, the method will raise a SyntaxError exception.
+             If no element matches the CSS selectors, the querySelector() returns null.
+
+             what if the there are muliple elements with same id or class or tag
+             at that time the querySelector() select's the first element only 
+        */
+
+        // querySelector(#id) by id use css id selector #
+        let select_by_id = document.querySelector('#dom_head');
+            //console.log(select_by_id);
+          
+        // querySelector(.className) by className use css class selector .
+        let select_by_class = document.querySelector('.heading');
+            //console.log(select_by_class);   
+            
+        // querySelector(tag) by tag use css tag selector 
+        let select_by_tag = document.querySelector('h1');
+           // console.log(select_by_class);  
+
+
+        
+        /*
+           # querySelectorAll() 
+
+           you can use the querySelectorAll() method to select all elements that 
+           match a CSS selector or a group of CSS selectors:
+
+           The querySelectorAll() method returns a static NodeList of elements that match the CSS selector.
+           If no element matches, it returns an empty NodeList.
+           NodeList is look like a array but it is not a array. however, in modern web browser,
+           you can use the forEach() method or the for...of loop.
+
+           
+        */    
+
+        // querySelectorAll(#id) by id use css id selector #
+          select_by_id = document.querySelectorAll('#dom_head');
+          console.log(select_by_id);
+
+       // querySelectorAll(.className) by className use css class selector .
+          select_by_class = document.querySelectorAll('.list-item');
+          console.log(select_by_class);
+
+       // querySelectorAll(tag) by tag use css tag selector  
+          select_by_tag = document.querySelectorAll('h2');
+          console.log(select_by_tag);  
+
+       // group css selector 
+       // finds all li elements that are directly inside a <ul> element:
+         let gp = document.querySelectorAll('ul > li');   
+         console.log(gp);
+      
+      // chnage the background color and font-family 
+      // of elements in nodelist gp return by  document.querySelectorAll('ul > li');    
+      // As we know querySelectorAll return's the nodelist which is not a array so forEach() in 
+      // a function for it, so first convert the gp nodelist into the array then 
+      // change the property style background and the font-family
+         let arr = Array.from(gp);
+             arr.forEach((item)=>{
+                item.style.backgroundColor = "pink";
+                item.style.fontFamily = "Lucida Console", "Courier New", "monospace";
+             });
+    </script>
+</body>
+</html>

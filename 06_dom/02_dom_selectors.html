@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Object Modal Selector</title>
+</head>
+<body>
+    <div class="DOM">
+        <h1 id="dom_head" name="h1" class="heading">Document Object Modal Selector <span style="display:none">yes okay</span></h1>
+        <h2>one</h2>
+        <h2>two</h2>
+        <h2>three</h2>
+    </div>
+
+    <ul class="rank_list">
+      <li class="list-item">first</li>
+      <li class="list-item">second</li>
+      <li class="list-item">third</li>
+      <li class="list-item">fourth</li>
+    </ul>
+
+    <p>Please rate the service:</p>
+    <p>
+        <label for="very-poor">
+            <input type="radio" name="rate" value="Very poor" id="very-poor"> Very poor
+        </label>
+        <label for="poor">
+            <input type="radio" name="rate" value="Poor" id="poor"> Poor
+        </label>
+        <label for="ok">
+            <input type="radio" name="rate" value="OK" id="ok"> OK
+        </label>
+        <label for="good">
+            <input type="radio" name="rate" value="Good"> Good
+        </label>
+        <label for="very-good">
+            <input type="radio" name="rate" value="Very Good" id="very-good"> Very Good
+        </label>
+    </p>
+</html>
+
+    <script>
+        /*
+             # There are many ways to select the html dom element using JS DOM 
+             
+                getElementById() – select an element by id.
+                getElementsByName() – select elements by name.
+                getElementsByTagName()  – select elements by a tag name.
+                getElementsByClassName() – select elements by one or more class names.
+                querySelector()  – select elements by CSS selectors.
+                querySelectorAll()  – select all elements by CSS selectors.
+
+             # After selecting the elements you can also manipulate them by properties and method
+               example setting there attribute and getting there attribute 
+                       changing the style of element, setting a text html etc    
+        */
+       /*
+           NOTE:- look the output in the browser 
+       */ 
+
+        /*
+           # getElementById() 
+             
+             return the element which the specfic id if the element with that specific id is not present 
+             it will return null
+             
+        */
+        let ele = document.getElementById('dom_head');
+        console.log(ele); // contains the html tag whose id is 'dom_head'
+        
+        // AS I have the html tag in ele in can access the attributes and also change some propeties
+        console.log(ele.id);
+        console.log(ele.className);
+        console.log(ele.innerHTML); // gives whole innerHtml
+        // changing the innerHtml of ele 
+        //ele.innerHTML = "Changing the heading by innerHtml property ";
+        console.log(ele.innerText); // gives only innerText that is visiable of screen
+        console.log(ele.textContent); //  gives only innerText that is visiable of screen and also the hiiden text
+
+        // setting the color of ele heading by some properties
+        ele.style.color = "orange";
+        ele.style.backgroundColor = "yellow";
+
+       // getting and setting the attributes by some methods
+       console.log(ele.getAttribute('id'));// id attruibte value =  dom_head
+       ele.setAttribute('name',"heading of page");// setting and adding the attribute
+
+       /*
+          # getElementsByName() 
+             
+            It's selected the elements have the same name in name attriute
+            It return's the nodelist which will look like a array but it is 
+            not a array
+       */
+
+        ele = document.getElementsByName('rate');
+        console.log(ele);
+        // AS getElementsByName() return the node which is look array but it is not a array 
+        // but it will the forEach() method
+
+        // change the style color and bgcolor of the ele = document.getElementsByName('rate');
+         ele.forEach((item)=>{
+            console.log(item);
+         });
+
+         /*
+             # getElementsByTagName() 
+                 
+               select elements by a tag name and return's the Html collection the tags
+               the HTMLcollection is look like a array but it is not a array 
+               you can convert into array to further manuplicate it by 
+               DOM properties and methods
+         */
+        // retun the HTML collection of all h2 tags in the document
+        ele = document.getElementsByTagName('h2');
+        console.log(ele);
+        // just use the forEach() see what will happen
+        // ele.forEach((item)=>{
+        //    console.log(item);
+        // });
+
+        // MOST IMP NOTE:- the above gives error forEach is not a function because HTMLCOLLECTION 
+        // return by getElementsByTagName('h2'); is not array forEach is not avaiable here
+
+        // convert the HTMLCOLLECTION return by getElementsByTagName('h2') into array
+        // and set some color and background of it
+        let arr = Array.from(ele);
+        arr.forEach((item)=>{
+            item.style.color = "yellow";
+            item.style.backgroundColor = "orange";
+        }); 
+
+        /*
+           #  getElementsByClassName() – select elements by one or more class names.
+
+              return's the HTMLCollection of element that have the same class attribute 
+              if the no match's is found return's the empty HTMLCollection
+              HTMLCollection is look like a array but it is not a array
+              so it does not have the array method's such as forEach()
+        */
+
+       ele = document.getElementsByClassName('list-item');
+       console.log(ele);
+        // just use the forEach() see what will happen
+        // ele.forEach((item)=>{
+        //    console.log(item);
+        // });
+
+        // MOST IMP NOTE:- the above gives error forEach is not a function because HTMLCOLLECTION 
+        // return by getElementsByClassName('list-item'); is not array forEach is not avaiable here
+
+        // convert the HTMLCOLLECTION return by getElementsByClassName('list-item'); into array
+        // and set some color and background of it also the font
+        arr = Array.from(ele);
+        arr.forEach((item)=>{
+           item.style.color = "green";
+           item.style.backgroundColor = "black";
+           item.style.fontFamily = "Lucida Console", "Courier New", "monospace";
+        });
+</script>
+</body>
+</html>

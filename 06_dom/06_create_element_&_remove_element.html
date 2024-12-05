@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>create element practice and remove element</title>
+</head>
+<body>
+    
+    <ul class="languages">
+        <li>JavaScript</li>
+    </ul>
+
+<script>
+    
+    let ul = document.querySelector(".languages");
+    // create a li 
+    function createlist(language){
+        const li = document.createElement("li");
+              li.innerHTML = language; // innerHTML is not optimised it traversed the whole nodelist
+        ul.appendChild(li);      
+    }
+    createlist("Java");
+    createlist("Python");
+    createlist("c");
+
+    // more optimised approached => always go with this createTextNode() approached 
+    function optimised_create_list(language){
+       const li = document.createElement("li");
+             li.appendChild(document.createTextNode(language));
+             ul.appendChild(li);
+    }
+    optimised_create_list("Golang");
+
+    // edit
+    let edit_secondChild = document.querySelector("li:nth-child(2)");
+    console.log(edit_secondChild);
+    //edit.innerHTML = "Ruby";
+    edit_secondChild.textContent = "Ruby";
+
+    // another way to edit
+    let edit_firstChild = document.querySelector("li:first-child");
+    console.log(edit_firstChild);
+    edit_firstChild.outerHTML = "<li>C++</li>";
+
+    // remove the Element 
+    let remove_the_element = document.querySelector("li:last-child");
+    console.log(remove_the_element);
+    remove_the_element.remove();
+</script>    
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess The Number</title>
+    <style>
+         h2,h4,h6,label{
+            color:white;
+            font-weight: bold;
+            font-size: large;
+            }
+
+         body{
+            background-color:grey;
+            }
+
+         div,label{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            }
+
+          input{
+            height:30px;
+            width: 300px;
+          }  
+
+          #btn,#reset{
+            height: 30px;
+            width: 120px;
+            font-weight: bold;
+            font-size: large;
+            margin-top: 2px;
+          }
+
+          form{
+            border: 2px solid whitesmoke;
+          }
+    </style>
+</head>
+<body>
+    <div>
+        <h2>Number guessing game</h3>
+        <h4>Try and guess the number between 1 to 100.<br>you have 10 attempts to guess the right number.</h4>
+        <form id="number_form">
+            <label for="guess_number">
+                <h1>Guess a number</h1>
+            <label>
+            <br>
+            <input type="text" id="guess_number">
+            <br>
+            <button id = "btn" type="submit">Submit</button>
+            <button id = "reset" type="reset">Reset</button>
+        </form>  
+        <h6 id="previous">previous Guess:</h6>  
+        <h6 id="attempts">Remaining attempts: 10</h6>
+    </div>
+
+    <script>
+          let guesses = [];
+          let previousGuess = [];
+          let count = 0;
+          let guessNumber;
+          let btn = document.getElementById('btn');
+          let reset_btn = document.querySelector('#reset');
+          let previous = document.querySelector("#previous");
+          let attempts = document.querySelector("#attempts");
+          let number = Math.floor(Math.random() * 100) + 1;
+          console.log(number);
+
+          let form_data = document.querySelector("#number_form");
+
+              form_data.addEventListener("submit",(event)=>{
+                  event.preventDefault();
+                  guessNumber = parseInt(document.getElementById("guess_number").value);
+                  if(guessNumber < 1 || guessNumber > 100 || isNaN(guessNumber)){
+                     alert("Invalid Number Check The Input");
+                  }else{
+                     guesses.push(count++);
+                     previousGuess.push(guessNumber);
+                     console.log(count);
+
+                     if(number == guessNumber){
+                        alert(`congratulations you guess the correct number ${guessNumber}`);
+                        btn.disabled = true;
+                        attempts.innerHTML = "You Sucessfully guesses the number " + guessNumber;
+                     }else if(guesses.length > 10){
+
+                        btn.disabled = true;
+                        attempts.innerHTML = "Your 10 Attempts are Over";
+                        attempts.style.color = "red"
+                        alert(`GAME OVER The Random Number is ${number}`);         
+                     }else{
+                        previous.innerHTML = `previous guesses: ${previousGuess}`;
+                        attempts.innerHTML = "Remaining attempts: " + (10 - count);
+                     }
+                     
+                  }
+                 
+              });
+
+                reset_btn.addEventListener("click",(event)=>{
+                     btn.disabled = false;
+                     previous.innerHTML = "previous guesses";
+                     attempts.innerHTML = "Remaining attempts: 10";
+                     attempts.style.color = "white"
+                     previousGuess = [];
+                     count = 0;
+                     guesses = [];
+                     number = Math.floor(Math.random() * 100) + 1;
+                });
+    </script>
+</body>
+</html>

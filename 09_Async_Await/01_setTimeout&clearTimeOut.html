@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>setTimeOut and clearTimeOut</title>
+</head>
+<body>
+    <h1>HELLO JAVASCRIPT</h1>
+    <button type="button" id="btn">stop</button>
+
+
+    <script>
+            /*
+                # setTimeout() => setTimeout() is the method an example of async and await. 
+
+                    It takes two parameter one is handler means callback function and second is time interval
+                    setTimeout(handler,time). 
+                    
+                    setTimeout() method execute only at once after the specific time. 
+            */
+
+            let clear = setTimeout(()=>{
+                          console.log("Hello Sankalp");
+                        },2000) // after 2000 means 2sec the "Hello Sankalp" is print on console
+
+           /*
+                # clearTimeout() =>  clearTimeout() is the method that clear the setTimeout() method 
+                and stop the operation of setTimeout()  method.
+
+                clearTimeout(reference) => It takes the reference of the setTimeout() method and stop's
+                the operation of setTimeout() method.
+           */
+            
+           let pause = document.querySelector("#btn");
+               
+             // onclick of btn we are clearing the timeout 
+             pause.addEventListener("click",($event)=>{
+                  clearTimeout(clear);
+             });
+    </script>
+</body>
+</html>

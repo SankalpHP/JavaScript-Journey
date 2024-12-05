@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="weekdays">
+        <p id="mon">Monday</p>
+        <p id="thue">Thuesday</p>
+        <p id="wed">Wednesday</p>
+        <p id="thur">Thursday</p>
+        <p id="fri">Friday</p>
+        <p id="sat">Saturday</p>
+        <p id="sun">Sunday</p>
+    </div>
+
+<script>
+        /*
+            # Traversing elements
+
+                Get the parent element – get the parent node of an element.
+                Get child elements – get children of an element.
+                Get siblings of an element – get siblings of an element.
+        */ 
+
+       let parent = document.querySelector('.weekdays');
+       console.log(parent);
+
+       // find the chideren of parentnode parent 
+       console.log(parent.childNodes); // return child parent having of any type
+       console.log(parent.children[0]); // return children of parent have the type node
+       console.log(parent.children[0].innerText);
+
+       // Above AS we get the child node from the parent node we can also get the parent from the child node
+       let child = document.getElementById('mon');
+       console.log(child);
+
+       // get parentNode from the childNode
+       // parentNode => gives the parentNode of childNode
+       console.log(child.parentNode);
+
+       // get next element child sibling
+       // nextElementSibling => give next child sibling
+       console.log(child.nextElementSibling);
+       
+        // get prevous element child sibling
+       // previousElementSibling => give previous child sibling
+       let sat = document.getElementById('sat');
+       console.log(sat.previousElementSibling);
+       
+       // from node we can get the first child and last child 
+       // firstElementChild => property gives first child of parentNode
+       console.log(parent.firstElementChild);// <p id="mon">monday</p>
+       // lastElementChild => property gives first child of parentNode
+       console.log(parent.lastElementChild);// <p id="sun">Sunday</p>
+</script>
+</body>
+</html>

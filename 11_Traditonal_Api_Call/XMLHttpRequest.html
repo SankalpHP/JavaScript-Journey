@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+      <div id = "table_div">
+
+      </div>
+      <button type="button" id="btn">click me</button>
+    <script>
+       let btn = document.querySelector("#btn");
+        btn.addEventListener("click",(event)=>{
+        
+            let data;   
+            let xml = new XMLHttpRequest();
+                xml.onreadystatechange = ()=>{
+                        if(xml.readyState == 4 && xml.status == 200){
+                           // console.log(xml.responseText);
+                            // console.log(typeof xml.responseText);
+                            data = JSON.parse(xml.responseText);
+                            console.log(data);
+                            //document.querySelector("h4").innerHTML = xml.responseText;
+                            details(data);
+                        }
+                    };
+                xml.open("GET","https://api.restful-api.dev/objects",true);
+        
+                xml.send();
+        });
+
+        function details(data){
+            btn.disabled = true;
+            let div = document.querySelector("#table_div");
+
+            let table = document.createElement("table");
+                table.style.border = "1px black solid";
+                table.style.borderCollapse = "collapse";
+                table.style.width = "100%";
+
+            let tr = document.createElement("tr");
+                tr.style.textAlign = "center";
+               
+            let th = document.createElement("th");
+                th.innerText = "ID";
+                th.rowSpan = 2;
+                th.style.border = "1px black solid";
+                tr.append(th); 
+
+                th = document.createElement("th");
+                th.innerText = "Name";
+                th.rowSpan = 2;
+                th.style.border = "1px black solid";
+                tr.append(th); 
+                
+                th = document.createElement("th");
+                th.innerText = "Data";
+                th.colSpan = 11; 
+                th.style.border = "1px black solid";
+                tr.append(th); 
+
+                table.append(tr); 
+
+                tr = document.createElement("tr");
+                th = document.createElement("th");
+                th.innerText = "Color";
+                th.style.border = "1px black solid";
+                tr.append(th); 
+
+               
+                th = document.createElement("th");
+                th.innerText = "Price";
+                th.style.border = "1px black solid";
+                tr.append(th); 
+
+               
+                th = document.createElement("th");
+                th.innerText = "Generation";
+                th.style.border = "1px black solid";
+                tr.append(th); 
+
+               
+                th = document.createElement("th");
+                th.innerText = "Year";
+                th.style.border = "1px black solid";
+                tr.append(th); 
+
+               
+                th = document.createElement("th");
+                th.innerText = "CPU model";
+                th.style.border = "1px black solid";
+                tr.append(th); 
+
+               
+                th = document.createElement("th");
+                th.innerText = "Hard disk size";
+                th.style.border = "1px black solid";
+                tr.append(th); 
+
+               
+                th = document.createElement("th");
+                th.innerText = "Strap Colour";
+                th.style.border = "1px black solid";
+                tr.append(th); 
+
+               
+                th = document.createElement("th");
+                th.innerText = "Case Size";
+                th.style.border = "1px black solid";
+                tr.append(th); 
+
+              
+                th = document.createElement("th");
+                th.innerText = "Description";
+                th.style.border = "1px black solid";
+                tr.append(th); 
+
+               
+                th = document.createElement("th");
+                th.innerText = "Screen size";
+                th.style.border = "1px black solid";
+                tr.append(th); 
+
+                th = document.createElement("th");
+                th.innerText = "Capacity";
+                th.style.border = "1px black solid";
+                tr.append(th); 
+               
+                table.append(tr);  
+               
+                data.forEach((item)=>{
+                    //console.log(item);
+                     
+                    let tr = document.createElement("tr");
+                    tr.style.textAlign = "center";
+
+                        // Create ID cell
+                        let td = document.createElement("td");
+                        td.style.border = "1px solid black";
+                        td.style.borderCollapse = "collapse";
+                        td.innerText = item.id;
+                        tr.append(td);
+
+                        // Create Name cell
+                        td = document.createElement("td");
+                        td.style.border = "1px solid black";
+                        td.style.borderCollapse = "collapse";
+                        td.innerText = item.name;
+                        tr.append(td);
+
+                        // Create Color cell
+                        td = document.createElement("td");
+                        td.style.border = "1px solid black";
+                        td.style.borderCollapse = "collapse";
+                        if (item.data && item.data.color) {
+                            td.innerText = item.data.color;
+                        } else {
+                            td.innerText = "";
+                        }
+                        tr.append(td);
+
+                         // Create Price cell
+                         td = document.createElement("td");
+                            td.style.border = "1px solid black";
+                            td.style.borderCollapse = "collapse";
+                            if (item.data && (item.data.Price || item.data["Price"])) {
+                                td.innerText = item.data.Price || item.data["Price"];
+                            } else {
+                                td.innerText = "";
+                            }
+                            tr.append(td);
+
+                         // Create Generation cell
+                         td = document.createElement("td");
+                            td.style.border = "1px solid black";
+                            td.style.borderCollapse = "collapse";
+                            if (item.data && (item.data.Generation || item.data["Generation"])) {
+                                td.innerText = item.data.Generation || item.data["Generation"];
+                            } else {
+                                td.innerText = "";
+                            }
+                            tr.append(td);
+
+
+                         // Create Year cell
+                         td = document.createElement("td");
+                            td.style.border = "1px solid black";
+                            td.style.borderCollapse = "collapse";
+                            if (item.data && (item.data.year || item.data["year"])) {
+                                td.innerText = item.data.year || item.data["year"];
+                            } else {
+                                td.innerText = "";
+                            }
+                            tr.append(td);
+
+
+                         // Create CPU model cell
+                         td = document.createElement("td");
+                            td.style.border = "1px solid black";
+                            td.style.borderCollapse = "collapse";
+                            if (item.data && (item.data.CPU || item.data["CPU model"])) {
+                                td.innerText = item.data.CPU || item.data["CPU model"];
+                            } else {
+                                td.innerText = "";
+                            }
+                            tr.append(td);    
+
+                         // Create Hard disk size cell
+                         td = document.createElement("td");
+                            td.style.border = "1px solid black";
+                            td.style.borderCollapse = "collapse";
+                            if (item.data && (item.data.Hard || item.data["Hard disk size"])) {
+                                td.innerText = item.data.Hard || item.data["Hard disk size"];
+                            } else {
+                                td.innerText = "";
+                            }
+                            tr.append(td);       
+                        
+                             // Create Strap Colour cell
+                         td = document.createElement("td");
+                            td.style.border = "1px solid black";
+                            td.style.borderCollapse = "collapse";
+                            if (item.data && (item.data.Strap || item.data["Strap Colour"])) {
+                                td.innerText = item.data.Strap || item.data["Strap Colour"];
+                            } else {
+                                td.innerText = "";
+                            }
+                            tr.append(td);    
+
+                          // Create Case Size cell
+                            td = document.createElement("td");
+                            td.style.border = "1px solid black";
+                            td.style.borderCollapse = "collapse";
+                            if (item.data && (item.data.Case || item.data["Case Size"])) {
+                                td.innerText = item.data.Case || item.data["Case Size"];
+                            } else {
+                                td.innerText = "";
+                            }
+                            tr.append(td);       
+                            
+                            // Create Description cell
+                            td = document.createElement("td");
+                            td.style.border = "1px solid black";
+                            td.style.borderCollapse = "collapse";
+                            if (item.data && (item.data.Description || item.data["Description"])) {
+                                td.innerText = item.data.Description || item.data["Description"];
+                            } else {
+                                td.innerText = "";
+                            }
+                            tr.append(td);     
+    
+                             // Create Screen Size cell
+                             td = document.createElement("td");
+                            td.style.border = "1px solid black";
+                            td.style.borderCollapse = "collapse";
+                            if (item.data && (item.data.Screen || item.data["Screen size"])) {
+                                td.innerText = item.data.Screen || item.data["Screen size"];
+                            } else {
+                                td.innerText = "";
+                            }
+                            tr.append(td);    
+
+                        // Create Capacity cell
+                        td = document.createElement("td");
+                        td.style.border = "1px solid black";
+                        td.style.borderCollapse = "collapse";
+                        if (item.data && (item.data.capacity || item.data["capacity GB"])) {
+                            td.innerText = item.data.capacity || item.data["capacity GB"];
+                        } else {
+                            td.innerText = "";
+                        }
+                        tr.append(td);
+
+                        table.append(tr);
+                                            
+                });
+               
+             
+          div.append(table);  
+        }
+        
+    </script>
+</body>
+</html>

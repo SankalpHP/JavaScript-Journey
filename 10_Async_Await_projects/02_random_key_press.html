@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Key</title>
+</head>
+<body>
+    
+     
+
+    <script>
+          let dv = document.createElement("div");
+          
+        window.addEventListener("keypress",(event)=>{
+           dv.innerHTML = "";
+           details(event.key,event.keyCode,event.code)
+        });
+        function details(key,keyCode,Code){
+              let tb = document.createElement("table"); 
+                  tb.style.width = "100%";
+            
+              let tr = document.createElement("tr");
+                  
+              let ths = ["Key","KeyCode","Code"];
+   
+              ths.forEach((item)=>{
+                  let th = document.createElement("th");
+                      th.textContent = item;
+                      th.style.border = "1px solid black"
+                      th.style.borderCollapse = "collapse";
+                      tr.appendChild(th)
+              });
+              tb.appendChild(tr);
+
+              tr = document.createElement("tr");
+              
+             let td = document.createElement("th");
+                 td.textContent = (key==" "?"Space":key);
+                 td.style.border = "1px solid black";
+                 td.style.borderCollapse = "collapse";
+                 tr.appendChild(td)
+
+                 td = document.createElement("th");
+                 td.textContent = keyCode;
+                 td.style.border = "1px solid black";
+                 td.style.borderCollapse = "collapse";
+                 tr.appendChild(td)
+
+                 td = document.createElement("th");
+                 td.textContent = Code;
+                 td.style.border = "1px solid black";
+                 td.style.borderCollapse = "collapse";
+                 tr.appendChild(td)
+
+                 tb.appendChild(tr);
+
+              dv.appendChild(tb);
+              document.body.appendChild(dv);
+        }
+
+    </script>
+</body>
+</html>
